@@ -21,10 +21,4 @@ target 'TesteiOS_Marvel' do
     pod 'Quick'
     pod 'Nimble'
   end
-
-  target 'TesteiOS_MarvelUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

@@ -12,7 +12,11 @@ class ApiServices {
     static let sharedInstance: ApiServices = ApiServices()
     public var marvelApi: MarvelApiProtocol
     
-    public var useMock: Bool = false
+    public var useMock: Bool = false {
+        didSet {
+            marvelApi = useMock ? MarvelApiMock() : MarvelApi()
+        }
+    }
     init() {
         marvelApi = useMock ? MarvelApiMock() : MarvelApi()
     }

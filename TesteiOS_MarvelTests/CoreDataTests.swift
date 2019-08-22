@@ -18,7 +18,7 @@ class CoreDataTests: QuickSpec {
         let disposeBag: DisposeBag = DisposeBag()
         describe("when persona was saved as favorite") {
             it("should save a minimum favorite persona details locally") {
-                let avatarData = Data()
+                let avatarData = "avatarURLString"
                 let personaId = -54321
                 let personaName = "personUnitTestName"
                 waitUntil { done in
@@ -40,9 +40,9 @@ class CoreDataTests: QuickSpec {
                         personaList -> Void in
                         if let first = personaList.first(where: { $0.id == -54321 }) {
                             expect(first.name).to(equal("personUnitTestName"))
+                            expect(first.avatar).to(equal("avatarURLString"))
                             expect(first.id).to(equal(-54321))
                         }
-                        //expect(first?.avatar).to(equal(Data(base64Encoded: "encodedUnitTest")))
                         done()
                     }).disposed(by: disposeBag)
                 }

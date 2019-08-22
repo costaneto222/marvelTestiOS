@@ -14,6 +14,6 @@ class CharacterTableViewCell: UITableViewCell {
     
     func setView(characterName: String, avatarString: String) {
         titleLabel.text = characterName
-        avatarImageView.image = UIImage(named: avatarString)
+        self.avatarImageView.image = avatarString.getImageFromUrlString()
     }
 }

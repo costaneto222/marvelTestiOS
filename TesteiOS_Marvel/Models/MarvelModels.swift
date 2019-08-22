@@ -8,54 +8,44 @@
 
 import Foundation
 
+
+
 struct PersonaModel: Codable {
     let attributionHTML : String?
     let attributionText : String?
-    let code : String?
     let copyright : String?
     let data : PersonaModelData?
-    let etag : String?
-    let status : String?
     
     enum CodingKeys: String, CodingKey {
         case attributionHTML = "attributionHTML"
         case attributionText = "attributionText"
-        case code = "code"
         case copyright = "copyright"
         case data = "data"
-        case etag = "etag"
-        case status = "status"
     }
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         attributionHTML = try values.decodeIfPresent(String.self, forKey: .attributionHTML)
         attributionText = try values.decodeIfPresent(String.self, forKey: .attributionText)
-        code = try values.decodeIfPresent(String.self, forKey: .code)
         copyright = try values.decodeIfPresent(String.self, forKey: .copyright)
-        data = try PersonaModelData(from: decoder)
-        etag = try values.decodeIfPresent(String.self, forKey: .etag)
-        status = try values.decodeIfPresent(String.self, forKey: .status)
+        data = try values.decodeIfPresent(PersonaModelData.self, forKey: .data)
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(attributionHTML, forKey: .attributionHTML)
         try container.encode(attributionText, forKey: .attributionText)
-        try container.encode(code, forKey: .code)
         try container.encode(copyright, forKey: .copyright)
         try data?.encode(to: encoder)
-        try container.encode(etag, forKey: .etag)
-        try container.encode(status, forKey: .status)
     }
 }
 
 struct PersonaModelData: Codable {
-    let count : String?
-    let limit : String?
-    let offset : String?
+    let count : Int?
+    let limit : Int?
+    let offset : Int?
     let results : [PersonaModelDataResult]?
-    let total : String?
+    let total : Int?
     
     enum CodingKeys: String, CodingKey {
         case count = "count"
@@ -67,11 +57,11 @@ struct PersonaModelData: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        count = try values.decodeIfPresent(String.self, forKey: .count)
-        limit = try values.decodeIfPresent(String.self, forKey: .limit)
-        offset = try values.decodeIfPresent(String.self, forKey: .offset)
+        count = try values.decodeIfPresent(Int.self, forKey: .count)
+        limit = try values.decodeIfPresent(Int.self, forKey: .limit)
+        offset = try values.decodeIfPresent(Int.self, forKey: .offset)
         results = try values.decodeIfPresent([PersonaModelDataResult].self, forKey: .results)
-        total = try values.decodeIfPresent(String.self, forKey: .total)
+        total = try values.decodeIfPresent(Int.self, forKey: .total)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -87,7 +77,7 @@ struct PersonaModelData: Codable {
 struct PersonaModelDataResult: Codable {
     let comics : Comics?
     let descriptionField : String?
-    let id : String?
+    let id : Int?
     let modified : String?
     let name : String?
     let resourceURI : String?
@@ -110,13 +100,13 @@ struct PersonaModelDataResult: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        comics = try Comics(from: decoder)
+        comics = try values.decodeIfPresent(Comics.self, forKey: .comics)
         descriptionField = try values.decodeIfPresent(String.self, forKey: .descriptionField)
-        id = try values.decodeIfPresent(String.self, forKey: .id)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
         modified = try values.decodeIfPresent(String.self, forKey: .modified)
         name = try values.decodeIfPresent(String.self, forKey: .name)
         resourceURI = try values.decodeIfPresent(String.self, forKey: .resourceURI)
-        thumbnail = try PersonaDataImage(from: decoder)
+        thumbnail = try values.decodeIfPresent(PersonaDataImage.self, forKey: .thumbnail)
         urls = try values.decodeIfPresent([PersonaDataUrls].self, forKey: .urls)
     }
     
@@ -135,10 +125,10 @@ struct PersonaModelDataResult: Codable {
 
 
 struct Comics: Codable {
-    let available : String?
+    let available : Int?
     let collectionURI : String?
     let items : [ComicItem]?
-    let returned : String?
+    let returned : Int?
     
     enum CodingKeys: String, CodingKey {
         case available = "available"
@@ -149,10 +139,10 @@ struct Comics: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        available = try values.decodeIfPresent(String.self, forKey: .available)
+        available = try values.decodeIfPresent(Int.self, forKey: .available)
         collectionURI = try values.decodeIfPresent(String.self, forKey: .collectionURI)
         items = try values.decodeIfPresent([ComicItem].self, forKey: .items)
-        returned = try values.decodeIfPresent(String.self, forKey: .returned)
+        returned = try values.decodeIfPresent(Int.self, forKey: .returned)
     }
     
     public func encode(to encoder: Encoder) throws {

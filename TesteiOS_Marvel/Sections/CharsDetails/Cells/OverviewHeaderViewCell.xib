@@ -37,7 +37,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Favorite"/>
                             </button>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-AG-7YT">
+                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-AG-7YT">
                                 <rect key="frame" x="273" y="126" width="121" height="29"/>
                                 <segments>
                                     <segment title="Movies"/>
@@ -69,7 +69,6 @@
             <connections>
                 <outlet property="avatarImageView" destination="3RJ-7L-Awi" id="k29-PR-q7G"/>
                 <outlet property="favoriteButton" destination="m66-QI-998" id="K8U-wv-P2D"/>
-                <outlet property="profileTypeSControl" destination="lgW-AG-7YT" id="WPf-hJ-BVQ"/>
             </connections>
             <point key="canvasLocation" x="221" y="-100"/>
         </tableViewCell>

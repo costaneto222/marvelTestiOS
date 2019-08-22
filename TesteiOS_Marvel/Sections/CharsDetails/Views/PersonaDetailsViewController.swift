@@ -34,9 +34,15 @@ class PersonaDetailsViewController: UIViewController {
             tableView.tableFooterView = UIView()
         }
     }
+    weak var coordinator: MainCoordinator?
     
     let viewModel: PersonaDetailsViewModel = PersonaDetailsViewModel()
     let disposeBag: DisposeBag = DisposeBag()
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.rx_retrievePersonaDetails()
+    }
     
     func saveAsFavorite() {
         self.viewModel.savePersonaAsFavorite().subscribe(onNext: {
@@ -53,9 +59,25 @@ class PersonaDetailsViewController: UIViewController {
         }).disposed(by: self.disposeBag)
     }
     
-    func reloadPersonaInformationForType(_ index: Int) {
-        
+    func rx_retrievePersonaDetails() {
+        self.addObstructiveLoading()
+        viewModel.rx_retrievePersonaOverview()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
+                [weak self] _ in
+                guard let `self` = self else { return }
+                self.removeObstructiveLoading()
+                self.tableView.reloadData()
+            }, onError: { [weak self] error in
+                guard let `self` = self else { return }
+                self.removeObstructiveLoading()
+                self.presentError(error.localizedDescription, code: "150")
+            }).disposed(by: self.disposeBag)
     }
+    
+//    func reloadPersonaInformationForType(_ index: Int) {
+//
+//    }
 }
 
 extension PersonaDetailsViewController: UITableViewDataSource {
@@ -67,17 +89,17 @@ extension PersonaDetailsViewController: UITableViewDataSource {
         switch indexPath.row {
         case DetailsRows.overview.rawValue:
             guard let cell = tableView.dequeueReusableCell(withIdentifier: OverviewHeaderViewCell.cellIdentifier, for: indexPath) as? OverviewHeaderViewCell else { return UITableViewCell() }
-            cell.configOverviewWith(avatarImage: UIImage(named: viewModel.avatarString))
+            cell.configOverviewWith(avatarImage: viewModel.avatarString)
             cell.favoriteButton.rx.tap.subscribe(onNext: {
                 [weak self] in
                 guard let `self` = self else { return }
                 self.saveAsFavorite()
             }).disposed(by: cell.disposeBag)
-            cell.profileTypeSControl.rx.selectedSegmentIndex.subscribe(onNext: {
-                [weak self] index in
-                guard let `self` = self else { return }
-                self.reloadPersonaInformationForType(index)
-            }).disposed(by: cell.disposeBag)
+//            cell.profileTypeSControl.rx.selectedSegmentIndex.subscribe(onNext: {
+//                [weak self] index in
+//                guard let `self` = self else { return }
+//                self.reloadPersonaInformationForType(index)
+//            }).disposed(by: cell.disposeBag)
             return cell
             
         case DetailsRows.bio.rawValue:

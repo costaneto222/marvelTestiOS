@@ -14,6 +14,7 @@ import RxSwift
 
 class PersonaDetailsTests: QuickSpec {
     override func spec() {
+        ApiServices.sharedInstance.useMock = true
         let viewModel: PersonaDetailsViewModel = PersonaDetailsViewModel()
         describe("get persona details") {
             it("should bring a persona image and biography") {
@@ -22,7 +23,7 @@ class PersonaDetailsTests: QuickSpec {
                     viewModel.rx_retrievePersonaOverview().subscribe(onNext: {
                         _ in
                         expect(viewModel.avatarString).to(equal(""))
-                        expect(viewModel.personaBio).to(equal("Descrição sobre a origem do personagem"))
+                        expect(viewModel.personaBio).to(equal("Biografia"))
                         done()
                     }).disposed(by: disposeBag)
                 }

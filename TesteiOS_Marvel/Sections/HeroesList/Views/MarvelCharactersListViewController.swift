@@ -21,6 +21,7 @@ class MarvelCharactersListViewController: UIViewController {
             
         }
     }
+    weak var coordinator: MainCoordinator?
     
     let disposeBag: DisposeBag = DisposeBag()
     var viewModel: MarvelCharactersListViewModel = MarvelCharactersListViewModel()
@@ -29,7 +30,12 @@ class MarvelCharactersListViewController: UIViewController {
         super.viewDidLoad()
         self.addObstructiveLoading()
         self.tableView.isHidden = true
-        viewModel.rx_getAListOfCharacters().subscribe(onNext: {
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .bookmarks, target: self, action: #selector(showFavoriteList))
+        
+        viewModel.rx_getAListOfCharacters()
+            .observeOn(MainScheduler.instance)
+            .subscribe(onNext: {
             [weak self] in
             guard let `self` = self else { return }
             self.tableView.isHidden = false
@@ -41,13 +47,19 @@ class MarvelCharactersListViewController: UIViewController {
             self.presentError(error.localizedDescription, code: "402")
         }).disposed(by: disposeBag)
     }
+    
+    @objc func showFavoriteList() {
+        guard let coordinator = coordinator else { return }
+        coordinator.showFavoriteList()
+    }
 }
 
 extension MarvelCharactersListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
-        //Todo: Go to char detail screen
+        guard let coordinator = self.coordinator else { return }
+        let personaId = viewModel.listOfPersonas[indexPath.row].personaId
+        coordinator.showPersonaDetails(personaId: personaId)
     }
 }
 

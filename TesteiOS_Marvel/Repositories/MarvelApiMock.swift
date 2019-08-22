@@ -21,10 +21,10 @@ struct MarvelApiMock: MarvelApiProtocol {
         (personaName: "Hulk", avatarString: "", personaId: 5, personaBio: "Biografia"),
         (personaName: "Thor", avatarString: "", personaId: 6, personaBio: "Biografia")]
     
-    func rx_retrieveListOfPersonas() -> Observable<[(personaName: String, avatarString: String)]> {
+    func rx_retrieveListOfPersonas() -> Observable<[(personaName: String, avatarString: String, personaId: Int)]> {
         let listToReturn = listOfPersonas.map {
-            name, avatar, id, bio -> (personaName: String, avatarString: String) in
-            return (personaName: name, avatarString: avatar)
+            name, avatar, id, bio -> (personaName: String, avatarString: String, personaId: Int) in
+            return (personaName: name, avatarString: avatar, personaId: id)
         }
         return Observable
             .just(listToReturn)
@@ -41,11 +41,11 @@ struct MarvelApiMock: MarvelApiProtocol {
             personaName: returnValue.personaName))
     }
     
-    func savePersonaAsFavorite(personaId: Int, avatar: Data, name: String) -> Observable<Bool> {
+    func savePersonaAsFavorite(personaId: Int, avatar: String, name: String) -> Observable<Bool> {
         return CoreDataModel.sharedInstance.savePersonaAsFavorite(personaId, name: name, avatar: avatar)
     }
     
-    func retrieveListOfFavoritesPersonas() -> Observable<[(name: String, id: Int, avatar: Data?)]> {
+    func retrieveListOfFavoritesPersonas() -> Observable<[(name: String, id: Int, avatar: String)]> {
         return CoreDataModel.sharedInstance.retrieveFavoritePersonasList()
     }
     

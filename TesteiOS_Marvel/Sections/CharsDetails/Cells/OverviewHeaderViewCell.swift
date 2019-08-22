@@ -13,7 +13,7 @@ import RxCocoa
 class OverviewHeaderViewCell: UITableViewCell {
     @IBOutlet private weak var avatarImageView: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var profileTypeSControl: UISegmentedControl!
+    //@IBOutlet weak var profileTypeSControl: UISegmentedControl!
     
     private(set) var disposeBag: DisposeBag = DisposeBag()
     
@@ -22,7 +22,7 @@ class OverviewHeaderViewCell: UITableViewCell {
         self.disposeBag = DisposeBag()
     }
     
-    func configOverviewWith(avatarImage image: UIImage?) {
-        avatarImageView.image = image
+    func configOverviewWith(avatarImage name: String) {
+        avatarImageView.image = name.getImageFromUrlString()
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 import RxSwift
 
 class MarvelCharactersListViewModel {
-    var listOfPersonas: [(personaName: String, avatarString: String)] = []
+    var listOfPersonas: [(personaName: String, avatarString: String, personaId: Int)] = []
     func rx_getAListOfCharacters() -> Observable<Void> {
         return ApiServices.sharedInstance.marvelApi.rx_retrieveListOfPersonas().map {
             [weak self] personaList in

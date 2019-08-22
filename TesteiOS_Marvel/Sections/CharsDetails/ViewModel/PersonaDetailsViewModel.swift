@@ -15,15 +15,8 @@ class PersonaDetailsViewModel {
     var personaName: String = ""
     var personaBio: String = ""
 
-    func rx_getListOfFavoritePersonas() -> Observable<Void> {
-        return ApiServices.sharedInstance.marvelApi.retrieveListOfFavoritesPersonas().map {
-            _ -> Void in
-            
-        }
-    }
-    
     func savePersonaAsFavorite() -> Observable<Bool> {
-        return ApiServices.sharedInstance.marvelApi.savePersonaAsFavorite(personaId: personaId, avatar: Data(), name: personaName)
+        return ApiServices.sharedInstance.marvelApi.savePersonaAsFavorite(personaId: personaId, avatar: avatarString, name: personaName)
     }
     
     func removePersonaFromFavoriteList() -> Observable<Bool> {

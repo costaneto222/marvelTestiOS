@@ -70,5 +70,35 @@
             </objects>
             <point key="canvasLocation" x="1004" y="19"/>
         </scene>
+        <!--Favorite List View Controller-->
+        <scene sceneID="vyH-Hb-ikS">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteListViewController" id="AdJ-aL-jvu" customClass="FavoriteListViewController" customModule="TesteiOS_Marvel" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="0pT-Se-RFU">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="8Bc-N5-53u">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="B1h-rV-1EQ" firstAttribute="bottom" secondItem="8Bc-N5-53u" secondAttribute="bottom" id="Dea-Sq-i9W"/>
+                            <constraint firstItem="8Bc-N5-53u" firstAttribute="leading" secondItem="B1h-rV-1EQ" secondAttribute="leading" id="hUc-vj-fej"/>
+                            <constraint firstItem="B1h-rV-1EQ" firstAttribute="trailing" secondItem="8Bc-N5-53u" secondAttribute="trailing" id="hjA-S4-5ve"/>
+                            <constraint firstItem="8Bc-N5-53u" firstAttribute="top" secondItem="B1h-rV-1EQ" secondAttribute="top" id="qTm-KU-K2i"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="B1h-rV-1EQ"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="8Bc-N5-53u" id="15F-Ml-P5y"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="lpj-B6-qMc" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1788" y="-77"/>
+        </scene>
     </scenes>
 </document>

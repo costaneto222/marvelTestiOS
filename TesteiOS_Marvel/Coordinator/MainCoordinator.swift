@@ -17,6 +17,20 @@ class MainCoordinator: Coordinator {
     
     func start() {
         let vc = MarvelCharactersListViewController.instantiate(fromStoryboard: "Main")
+        vc.coordinator = self
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func showPersonaDetails(personaId: Int) {
+        let vc = PersonaDetailsViewController.instantiate(fromStoryboard: "Main")
+        vc.coordinator = self
+        vc.viewModel.personaId = personaId
+        navigationController.pushViewController(vc, animated: false)
+    }
+    
+    func showFavoriteList() {
+        let vc = FavoriteListViewController.instantiate(fromStoryboard: "Main")
+        vc.coordinator = self
         navigationController.pushViewController(vc, animated: false)
     }
 }

@@ -26,8 +26,15 @@ extension UIViewController: ViewController {
             message: error + " | code " + code,
             preferredStyle: UIAlertController.Style.alert)
         
-        for action in actions {
-            alertController.addAction(action)
+        if actions.isEmpty {
+            alertController.addAction(UIAlertAction(
+                title: "Ok",
+                style: .cancel,
+                handler: nil))
+        } else {
+            for action in actions {
+                alertController.addAction(action)
+            }
         }
         
         self.present(alertController, animated: true, completion: nil)
@@ -38,9 +45,15 @@ extension UIViewController: ViewController {
             title: "Yeah!",
             message: withMessage,
             preferredStyle: UIAlertController.Style.alert)
-        
-        for action in actions {
-            alertController.addAction(action)
+        if actions.isEmpty {
+            alertController.addAction(UIAlertAction(
+                title: "Ok",
+                style: .cancel,
+                handler: nil))
+        } else {
+            for action in actions {
+                alertController.addAction(action)
+            }
         }
         
         self.present(alertController, animated: true, completion: nil)

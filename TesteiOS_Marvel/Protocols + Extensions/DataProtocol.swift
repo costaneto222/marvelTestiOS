@@ -10,6 +10,6 @@ import Foundation
 import RxSwift
 
 protocol DataModel {
-    func savePersonaAsFavorite(_ id: Int, name: String, avatar: Data) -> Observable<Bool>
-    func retrieveFavoritePersonasList() -> Observable<[(name: String, id: Int, avatar: Data?)]>
+    func savePersonaAsFavorite(_ id: Int, name: String, avatar: String) -> Observable<Bool>
+    func retrieveFavoritePersonasList() -> Observable<[(name: String, id: Int, avatar: String)]>
 }

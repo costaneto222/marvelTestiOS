@@ -14,6 +14,7 @@ import RxSwift
 
 class MarvelCharacterListTests: QuickSpec {
     override func spec() {
+        ApiServices.sharedInstance.useMock = true
         let viewModel: MarvelCharactersListViewModel = MarvelCharactersListViewModel()
         describe("get list of heroes") {
             it("should bring an array of names and images") {
@@ -21,12 +22,12 @@ class MarvelCharacterListTests: QuickSpec {
                 waitUntil { done in
                     viewModel.rx_getAListOfCharacters().subscribe(onNext: {
                         _ in
-                        let personas = viewModel.listOfPersonas.map({ (personaName, _) -> String in
+                        let personas = viewModel.listOfPersonas.map{ (personaName, _, _) -> String in
                             return personaName
-                        })
-                        let avatarImages = viewModel.listOfPersonas.map({ (_, avatarString) -> String in
+                        }
+                        let avatarImages = viewModel.listOfPersonas.map{ (_, avatarString, _) -> String in
                             return avatarString
-                        })
+                        }
                         expect(personas)
                             .to(equal(["Capitão-América",
                                        "Homem-Aranha",

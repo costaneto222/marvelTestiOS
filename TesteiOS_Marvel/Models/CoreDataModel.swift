@@ -23,8 +23,30 @@ class CoreDataModel: DataModel {
         return appDelegate.persistentContainer.viewContext
     }()
     
-    func savePersonaAsFavorite(_ id: Int, name: String, avatar: Data) -> Observable<Bool> {
+    func savePersonaAsFavorite(_ id: Int, name: String, avatar: String) -> Observable<Bool> {
         guard let managedContext = appContext else { return Observable.just(false) }
+        
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: personaEntityName)
+        do {
+            let personaList = try managedContext.fetch(fetchRequest)
+            if let savedPersona = personaList.first(where: { $0.value(forKey: personaIdKey) as? Int == id }) {
+                let persona = savedPersona
+                
+                persona.setValue(id, forKey: personaIdKey)
+                persona.setValue(name, forKey: personaNameKey)
+                persona.setValue(avatar, forKey: personaAvatarKey)
+                do {
+                    try managedContext.save()
+                } catch let error as NSError {
+                    print(error)
+                    return Observable.error(error)
+                }
+                
+                return Observable.just(true)
+            }
+        } catch {
+            return Observable.just(false)
+        }
         
         guard let personaEntity = NSEntityDescription.entity(
             forEntityName: personaEntityName,
@@ -48,20 +70,21 @@ class CoreDataModel: DataModel {
         return Observable.just(true)
     }
     
-    func retrieveFavoritePersonasList() -> Observable<[(name: String, id: Int, avatar: Data?)]> {
+    func retrieveFavoritePersonasList() -> Observable<[(name: String, id: Int, avatar: String)]> {
         guard let managedContext = appContext else { return Observable.error(NSError(domain: "Error to get list of favorite personas", code: 1, userInfo: nil)) }
-        var listOfElements: [(name: String, id: Int, avatar: Data?)] = []
+        var listOfElements: [(name: String, id: Int, avatar: String)] = []
         
         let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: personaEntityName)
         do {
             let personaList = try managedContext.fetch(fetchRequest)
             for persona in personaList {
                 guard let name = persona.value(forKey: personaNameKey) as? String,
-                    let id = persona.value(forKey: personaIdKey) as? Int else {
+                    let id = persona.value(forKey: personaIdKey) as? Int,
+                    let imageString = persona.value(forKey: personaAvatarKey) as? String else {
                         return Observable.error(NSError(domain: "Error parsing list of favorite personas from CoreData", code: 2, userInfo: nil))
                 }
                 listOfElements.append(
-                    (name: name, id: id, avatar: persona.value(forKey: personaAvatarKey) as? Data)
+                    (name: name, id: id, avatar: imageString)
                 )
             }
         } catch let error as NSError {
