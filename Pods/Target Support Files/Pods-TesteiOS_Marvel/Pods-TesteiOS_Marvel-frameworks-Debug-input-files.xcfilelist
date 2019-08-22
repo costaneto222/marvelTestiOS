@@ -1,0 +1,5 @@
+${PODS_ROOT}/Target Support Files/Pods-TesteiOS_Marvel/Pods-TesteiOS_Marvel-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Keys/Keys.framework
+${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework
+${BUILT_PRODUCTS_DIR}/RxRelay/RxRelay.framework
+${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework

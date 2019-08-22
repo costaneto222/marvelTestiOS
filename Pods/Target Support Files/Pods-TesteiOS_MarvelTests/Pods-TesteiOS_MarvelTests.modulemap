@@ -1,0 +1,6 @@
+framework module Pods_TesteiOS_MarvelTests {
+  umbrella header "Pods-TesteiOS_MarvelTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
