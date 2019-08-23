@@ -8,6 +8,7 @@
 
 import Foundation
 
+
 class ApiServices {
     static let sharedInstance: ApiServices = ApiServices()
     public var marvelApi: MarvelApiProtocol

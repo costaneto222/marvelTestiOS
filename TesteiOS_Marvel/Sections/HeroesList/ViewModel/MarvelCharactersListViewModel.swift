@@ -11,10 +11,16 @@ import RxSwift
 
 class MarvelCharactersListViewModel {
     var listOfPersonas: [(personaName: String, avatarString: String, personaId: Int)] = []
+    private var waitingForCallEnd = false
     func rx_getAListOfCharacters() -> Observable<Void> {
+        if waitingForCallEnd {
+            return Observable.just(())
+        }
+        waitingForCallEnd = true
         return ApiServices.sharedInstance.marvelApi.rx_retrieveListOfPersonas().map {
             [weak self] personaList in
             guard let `self` = self else { return }
+            self.waitingForCallEnd = false
             self.listOfPersonas = personaList
         }
     }
