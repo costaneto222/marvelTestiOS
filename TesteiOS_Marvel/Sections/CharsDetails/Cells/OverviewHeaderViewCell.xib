@@ -37,22 +37,12 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                 <state key="normal" title="Favorite"/>
                             </button>
-                            <segmentedControl hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="lgW-AG-7YT">
-                                <rect key="frame" x="273" y="126" width="121" height="29"/>
-                                <segments>
-                                    <segment title="Movies"/>
-                                    <segment title="Comics"/>
-                                </segments>
-                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="3RJ-7L-Awi" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="6Qc-gM-9Sf"/>
-                            <constraint firstItem="lgW-AG-7YT" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="3RJ-7L-Awi" secondAttribute="trailing" constant="20" id="9Ee-Jj-K5L"/>
                             <constraint firstAttribute="trailing" secondItem="m66-QI-998" secondAttribute="trailing" constant="60" id="LpE-fU-IVa"/>
                             <constraint firstAttribute="bottom" secondItem="3RJ-7L-Awi" secondAttribute="bottom" constant="26" id="i76-eA-s2K"/>
-                            <constraint firstAttribute="bottom" secondItem="lgW-AG-7YT" secondAttribute="bottom" constant="26" id="klv-Nd-xxv"/>
-                            <constraint firstAttribute="trailing" secondItem="lgW-AG-7YT" secondAttribute="trailing" constant="20" id="nZd-B8-EQK"/>
                             <constraint firstItem="3RJ-7L-Awi" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="qmT-3N-W5x"/>
                             <constraint firstItem="m66-QI-998" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="sE1-rI-PH8"/>
                             <constraint firstItem="3RJ-7L-Awi" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="26" id="udg-cf-Uon"/>

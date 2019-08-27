@@ -41,6 +41,8 @@
 		FAD7BC99230DF40B00C02696 /* CoreDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD7BC98230DF40B00C02696 /* CoreDataModel.swift */; };
 		FAD7BC9C230DF73E00C02696 /* DataProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD7BC9B230DF73E00C02696 /* DataProtocol.swift */; };
 		FAD7BC9E230E122100C02696 /* MarvelApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAD7BC9D230E122100C02696 /* MarvelApi.swift */; };
+		FADA581823116B4400D46A56 /* TesteiOS_MarvelUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA581723116B4400D46A56 /* TesteiOS_MarvelUITests.swift */; };
+		FADA582023116B7900D46A56 /* MarvelCharactersListUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = FADA581F23116B7900D46A56 /* MarvelCharactersListUITests.swift */; };
 		FAFF1065230CDBA5005DD5E0 /* MarvelModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF1064230CDBA5005DD5E0 /* MarvelModels.swift */; };
 		FAFF1067230CDBF9005DD5E0 /* ApiServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF1066230CDBF9005DD5E0 /* ApiServices.swift */; };
 		FAFF1069230CDCDE005DD5E0 /* MarvelApiProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAFF1068230CDCDE005DD5E0 /* MarvelApiProtocol.swift */; };
@@ -49,6 +51,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		FA482A46230C91B400E79A2E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FA482A26230C91B200E79A2E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FA482A2D230C91B200E79A2E;
+			remoteInfo = TesteiOS_Marvel;
+		};
+		FADA581A23116B4400D46A56 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FA482A26230C91B200E79A2E /* Project object */;
 			proxyType = 1;
@@ -102,6 +111,10 @@
 		FAD7BC98230DF40B00C02696 /* CoreDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataModel.swift; sourceTree = "<group>"; };
 		FAD7BC9B230DF73E00C02696 /* DataProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProtocol.swift; sourceTree = "<group>"; };
 		FAD7BC9D230E122100C02696 /* MarvelApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApi.swift; sourceTree = "<group>"; };
+		FADA581523116B4400D46A56 /* TesteiOS_MarvelUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = TesteiOS_MarvelUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FADA581723116B4400D46A56 /* TesteiOS_MarvelUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TesteiOS_MarvelUITests.swift; sourceTree = "<group>"; };
+		FADA581923116B4400D46A56 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FADA581F23116B7900D46A56 /* MarvelCharactersListUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelCharactersListUITests.swift; sourceTree = "<group>"; };
 		FAFF1064230CDBA5005DD5E0 /* MarvelModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelModels.swift; sourceTree = "<group>"; };
 		FAFF1066230CDBF9005DD5E0 /* ApiServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServices.swift; sourceTree = "<group>"; };
 		FAFF1068230CDCDE005DD5E0 /* MarvelApiProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MarvelApiProtocol.swift; sourceTree = "<group>"; };
@@ -122,6 +135,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				9ACD831CA277206E5312CBC2 /* Pods_TesteiOS_MarvelTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADA581223116B4400D46A56 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +212,7 @@
 			children = (
 				FA482A30230C91B200E79A2E /* TesteiOS_Marvel */,
 				FA482A48230C91B400E79A2E /* TesteiOS_MarvelTests */,
+				FADA581623116B4400D46A56 /* TesteiOS_MarvelUITests */,
 				FA482A2F230C91B200E79A2E /* Products */,
 				BBCB4741517E1F82BA2E1AF3 /* Pods */,
 				F3E6BD33150DB2A80C129131 /* Frameworks */,
@@ -203,6 +224,7 @@
 			children = (
 				FA482A2E230C91B200E79A2E /* TesteiOS_Marvel.app */,
 				FA482A45230C91B400E79A2E /* TesteiOS_MarvelTests.xctest */,
+				FADA581523116B4400D46A56 /* TesteiOS_MarvelUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -210,8 +232,8 @@
 		FA482A30230C91B200E79A2E /* TesteiOS_Marvel */ = {
 			isa = PBXGroup;
 			children = (
-				FAC0A093230CD29A0074970A /* Sections */,
 				FAC0A094230CD2A80074970A /* Storyboards */,
+				FAC0A093230CD29A0074970A /* Sections */,
 				50625AC2231039990066D3E4 /* Services */,
 				FA482A3B230C91B300E79A2E /* Assets.xcassets */,
 				FA482A40230C91B300E79A2E /* Info.plist */,
@@ -354,6 +376,16 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		FADA581623116B4400D46A56 /* TesteiOS_MarvelUITests */ = {
+			isa = PBXGroup;
+			children = (
+				FADA581723116B4400D46A56 /* TesteiOS_MarvelUITests.swift */,
+				FADA581F23116B7900D46A56 /* MarvelCharactersListUITests.swift */,
+				FADA581923116B4400D46A56 /* Info.plist */,
+			);
+			path = TesteiOS_MarvelUITests;
+			sourceTree = "<group>";
+		};
 		FAFF106C230CDE5D005DD5E0 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -408,6 +440,24 @@
 			productReference = FA482A45230C91B400E79A2E /* TesteiOS_MarvelTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		FADA581423116B4400D46A56 /* TesteiOS_MarvelUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FADA581C23116B4400D46A56 /* Build configuration list for PBXNativeTarget "TesteiOS_MarvelUITests" */;
+			buildPhases = (
+				FADA581123116B4400D46A56 /* Sources */,
+				FADA581223116B4400D46A56 /* Frameworks */,
+				FADA581323116B4400D46A56 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FADA581B23116B4400D46A56 /* PBXTargetDependency */,
+			);
+			name = TesteiOS_MarvelUITests;
+			productName = TesteiOS_MarvelUITests;
+			productReference = FADA581523116B4400D46A56 /* TesteiOS_MarvelUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -422,6 +472,10 @@
 						CreatedOnToolsVersion = 10.3;
 					};
 					FA482A44230C91B400E79A2E = {
+						CreatedOnToolsVersion = 10.3;
+						TestTargetID = FA482A2D230C91B200E79A2E;
+					};
+					FADA581423116B4400D46A56 = {
 						CreatedOnToolsVersion = 10.3;
 						TestTargetID = FA482A2D230C91B200E79A2E;
 					};
@@ -442,6 +496,7 @@
 			targets = (
 				FA482A2D230C91B200E79A2E /* TesteiOS_Marvel */,
 				FA482A44230C91B400E79A2E /* TesteiOS_MarvelTests */,
+				FADA581423116B4400D46A56 /* TesteiOS_MarvelUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -461,6 +516,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		FA482A43230C91B400E79A2E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADA581323116B4400D46A56 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -595,6 +657,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FADA581123116B4400D46A56 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FADA582023116B7900D46A56 /* MarvelCharactersListUITests.swift in Sources */,
+				FADA581823116B4400D46A56 /* TesteiOS_MarvelUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -602,6 +673,11 @@
 			isa = PBXTargetDependency;
 			target = FA482A2D230C91B200E79A2E /* TesteiOS_Marvel */;
 			targetProxy = FA482A46230C91B400E79A2E /* PBXContainerItemProxy */;
+		};
+		FADA581B23116B4400D46A56 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FA482A2D230C91B200E79A2E /* TesteiOS_Marvel */;
+			targetProxy = FADA581A23116B4400D46A56 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -823,6 +899,44 @@
 			};
 			name = Release;
 		};
+		FADA581D23116B4400D46A56 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5EUJQUFBHT;
+				INFOPLIST_FILE = TesteiOS_MarvelUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "costaneto.TesteiOS-MarvelUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TesteiOS_Marvel;
+			};
+			name = Debug;
+		};
+		FADA581E23116B4400D46A56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 5EUJQUFBHT;
+				INFOPLIST_FILE = TesteiOS_MarvelUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "costaneto.TesteiOS-MarvelUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = TesteiOS_Marvel;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -849,6 +963,15 @@
 			buildConfigurations = (
 				FA482A5D230C91B400E79A2E /* Debug */,
 				FA482A5E230C91B400E79A2E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FADA581C23116B4400D46A56 /* Build configuration list for PBXNativeTarget "TesteiOS_MarvelUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FADA581D23116B4400D46A56 /* Debug */,
+				FADA581E23116B4400D46A56 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

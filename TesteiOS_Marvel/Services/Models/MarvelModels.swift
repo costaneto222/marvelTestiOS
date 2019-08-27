@@ -75,7 +75,10 @@ struct PersonaModelData: Codable {
 }
 
 struct PersonaModelDataResult: Codable {
-    let comics : Comics?
+    let comics : CItem?
+    let series: CItem?
+    let stories: CItem?
+    let events: CItem?
     let descriptionField : String?
     let id : Int?
     let modified : String?
@@ -100,7 +103,10 @@ struct PersonaModelDataResult: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        comics = try values.decodeIfPresent(Comics.self, forKey: .comics)
+        comics = try values.decodeIfPresent(CItem.self, forKey: .comics)
+        events = try values.decodeIfPresent(CItem.self, forKey: .events)
+        series = try values.decodeIfPresent(CItem.self, forKey: .series)
+        stories = try values.decodeIfPresent(CItem.self, forKey: .stories)
         descriptionField = try values.decodeIfPresent(String.self, forKey: .descriptionField)
         id = try values.decodeIfPresent(Int.self, forKey: .id)
         modified = try values.decodeIfPresent(String.self, forKey: .modified)
@@ -113,6 +119,9 @@ struct PersonaModelDataResult: Codable {
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try comics?.encode(to: encoder)
+        try series?.encode(to: encoder)
+        try events?.encode(to: encoder)
+        try stories?.encode(to: encoder)
         try container.encode(descriptionField, forKey: .descriptionField)
         try container.encode(id, forKey: .id)
         try container.encode(modified, forKey: .modified)
@@ -124,10 +133,10 @@ struct PersonaModelDataResult: Codable {
 }
 
 
-struct Comics: Codable {
+struct CItem: Codable {
     let available : Int?
     let collectionURI : String?
-    let items : [ComicItem]?
+    let items : [UriItems]?
     let returned : Int?
     
     enum CodingKeys: String, CodingKey {
@@ -141,7 +150,7 @@ struct Comics: Codable {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         available = try values.decodeIfPresent(Int.self, forKey: .available)
         collectionURI = try values.decodeIfPresent(String.self, forKey: .collectionURI)
-        items = try values.decodeIfPresent([ComicItem].self, forKey: .items)
+        items = try values.decodeIfPresent([UriItems].self, forKey: .items)
         returned = try values.decodeIfPresent(Int.self, forKey: .returned)
     }
     
@@ -155,7 +164,7 @@ struct Comics: Codable {
 }
 
 
-struct ComicItem: Codable {
+struct UriItems: Codable {
     let name : String?
     let resourceURI : String?
     
@@ -200,11 +209,9 @@ struct PersonaDataUrls: Codable {
     }
 }
 
-
 struct PersonaDataImage: Codable {
-    let fileExtension: String?
-    let path : String?
-    
+    let imageString: String?
+
     enum CodingKeys: String, CodingKey {
         case fileExtension = "extension"
         case path = "path"
@@ -212,13 +219,125 @@ struct PersonaDataImage: Codable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        fileExtension = try values.decodeIfPresent(String.self, forKey: .fileExtension)
-        path = try values.decodeIfPresent(String.self, forKey: .path)
+        var fullpath = ""
+        if let fileExtension = try values.decodeIfPresent(String.self, forKey: .fileExtension),
+            let path = try values.decodeIfPresent(String.self, forKey: .path) {
+            fullpath = "\(path).\(fileExtension)"
+        }
+        imageString = fullpath
     }
     
     public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(fileExtension, forKey: .fileExtension)
-        try container.encode(path, forKey: .path)
+        if let imageStr = imageString {
+            let splitedString = imageStr.components(separatedBy: ".")
+            try container.encode(splitedString[1], forKey: .fileExtension)
+            try container.encode(splitedString[0], forKey: .path)
+        }
+    }
+}
+
+struct ComicsDetails : Codable {
+    let creators : CItem?
+    let dates : [ComicsDate]?
+    let descriptionField : String?
+    let diamondCode : String?
+    let id : Int?
+    let images : [PersonaDataImage]?
+    let pageCount : Int?
+    let prices : [ComicsPrice]?
+    let resourceURI : String?
+    let thumbnail : PersonaDataImage?
+    let title : String?
+    
+    enum CodingKeys: String, CodingKey {
+        case creators = "creators"
+        case dates = "dates"
+        case descriptionField = "description"
+        case diamondCode = "diamondCode"
+        case id = "id"
+        case images = "images"
+        case pageCount = "pageCount"
+        case prices = "prices"
+        case resourceURI = "resourceURI"
+        case thumbnail = "thumbnail"
+        case title = "title"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        creators = try values.decodeIfPresent(CItem.self, forKey: .creators)
+        dates = try values.decodeIfPresent([ComicsDate].self, forKey: .dates)
+        descriptionField = try values.decodeIfPresent(String.self, forKey: .descriptionField)
+        diamondCode = try values.decodeIfPresent(String.self, forKey: .diamondCode)
+        id = try values.decodeIfPresent(Int.self, forKey: .id)
+        images = try values.decodeIfPresent([PersonaDataImage].self, forKey: .images)
+        pageCount = try values.decodeIfPresent(Int.self, forKey: .pageCount)
+        prices = try values.decodeIfPresent([ComicsPrice].self, forKey: .prices)
+        resourceURI = try values.decodeIfPresent(String.self, forKey: .resourceURI)
+        thumbnail = try values.decodeIfPresent(PersonaDataImage.self, forKey: .thumbnail)
+        title = try values.decodeIfPresent(String.self, forKey: .title)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try creators?.encode(to: encoder)
+        try container.encode(dates, forKey: .dates)
+        try container.encode(descriptionField, forKey: .descriptionField)
+        try container.encode(diamondCode, forKey: .diamondCode)
+        try container.encode(id, forKey: .id)
+        try images?.encode(to: encoder)
+        try container.encode(pageCount, forKey: .pageCount)
+        try container.encode(prices, forKey: .prices)
+        try container.encode(resourceURI, forKey: .resourceURI)
+        try thumbnail?.encode(to: encoder)
+        try container.encode(title, forKey: .title)
+    }
+    
+}
+
+struct ComicsPrice : Codable {
+    
+    let price : Double?
+    let type : String?
+    
+    enum CodingKeys: String, CodingKey {
+        case price = "price"
+        case type = "type"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        price = try values.decodeIfPresent(Double.self, forKey: .price)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(price, forKey: .price)
+        try container.encode(type, forKey: .type)
+    }
+}
+
+struct ComicsDate : Codable {
+    
+    let date : String?
+    let type : String?
+    
+    enum CodingKeys: String, CodingKey {
+        case date = "date"
+        case type = "type"
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        date = try values.decodeIfPresent(String.self, forKey: .date)
+        type = try values.decodeIfPresent(String.self, forKey: .type)
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(date, forKey: .date)
+        try container.encode(type, forKey: .type)
     }
 }

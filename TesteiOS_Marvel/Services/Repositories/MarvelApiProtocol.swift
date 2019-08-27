@@ -11,8 +11,9 @@ import RxSwift
 
 protocol MarvelApiProtocol {
     func rx_retrieveListOfPersonas() -> Observable<[(personaName: String, avatarString: String, personaId: Int)]>
-    func rx_retrievePersonaOverview(_ personaId: Int) -> Observable<(avatarString: String, personaBio: String, personaId: Int, personaName: String)>
+    func rx_retrievePersonaOverview(_ personaId: Int) -> Observable<(avatarString: String, personaBio: String, personaId: Int, personaName: String, series: CItem?, comics: [Int], events: CItem?, stories: CItem?)>
     func savePersonaAsFavorite(personaId: Int, avatar: String, name: String) -> Observable<Bool>
     func retrieveListOfFavoritesPersonas() -> Observable<[(name: String, id: Int, avatar: String)]>
     func removeFavoritePersonaFromList(_ personaId: Int) -> Observable<Bool>
+    func retrieveComicsDetails(comicId: Int) -> Observable<(comicName: String, comicImageString: String, comicPageCount: Int, comicPrice: Double)>
 }

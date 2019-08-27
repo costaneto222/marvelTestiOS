@@ -13,7 +13,6 @@ import RxCocoa
 class OverviewHeaderViewCell: UITableViewCell {
     @IBOutlet private weak var avatarImageView: UIImageView!
     @IBOutlet weak var favoriteButton: UIButton!
-    //@IBOutlet weak var profileTypeSControl: UISegmentedControl!
     
     private(set) var disposeBag: DisposeBag = DisposeBag()
     

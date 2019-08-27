@@ -95,11 +95,6 @@ extension PersonaDetailsViewController: UITableViewDataSource {
                 guard let `self` = self else { return }
                 self.saveAsFavorite()
             }).disposed(by: cell.disposeBag)
-//            cell.profileTypeSControl.rx.selectedSegmentIndex.subscribe(onNext: {
-//                [weak self] index in
-//                guard let `self` = self else { return }
-//                self.reloadPersonaInformationForType(index)
-//            }).disposed(by: cell.disposeBag)
             return cell
             
         case DetailsRows.bio.rawValue:
